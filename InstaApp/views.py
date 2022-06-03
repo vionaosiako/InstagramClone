@@ -3,7 +3,8 @@ from django.shortcuts import render,redirect
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from .forms import  CreateUserForm
-# from django.contrib import messages
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 # Create your views here.
 def registerPage(request):
     form =  CreateUserForm()
@@ -27,5 +28,11 @@ def loginPage(request):
             messages.info(request, 'Username OR password is incorrect')
     contex = {}
     return render(request, 'auth/login.html', contex)
+
+def logoutUser(request):
+	logout(request)
+	return redirect('login')
+
+@login_required(login_url='login')
 def index(request):
     return render(request, 'index.html')
