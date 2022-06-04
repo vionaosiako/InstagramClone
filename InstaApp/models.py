@@ -8,7 +8,7 @@ class Profile(models.Model):
     fullname=models.CharField(max_length=100)
     username=models.CharField(max_length=100)
     bio=models.TextField()
-    user=models.OneToOneField(User,on_delete=models.CASCADE)
+    user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.fullname
 class Image(models.Model):
@@ -20,7 +20,7 @@ class Image(models.Model):
     def __str__(self):
         return self.name
 class Comment(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     date_comment = models.DateTimeField(auto_now_add=True)
     comments=models.TextField(null=True)
@@ -28,6 +28,6 @@ class Comment(models.Model):
         return self.comments
 class Likes(models.Model):
     image = models.ForeignKey(Image,related_name='like_count', on_delete=models.CASCADE)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, on_delete=models.CASCADE,null=True)
     def __str__(self):
         return self.image

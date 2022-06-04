@@ -1,10 +1,10 @@
 from django.shortcuts import render,redirect
-# from django.contrib.auth.decorators import login_required
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from .forms import  CreateUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from .models import Profile
 # Create your views here.
 def registerPage(request):
     form =  CreateUserForm()
@@ -36,3 +36,13 @@ def logoutUser(request):
 @login_required(login_url='loginPage')
 def index(request):
     return render(request, 'index.html')
+
+@login_required(login_url='loginPage')
+def profilePage(request,user_id):
+    # if request.user == current_user:
+        # profile=Profile.objects.all()
+        profile=Profile.objects.get(id=user_id)
+        contex = {'profile':profile}
+        return render(request, 'profile.html', contex)
+    # else:
+    #     return render(request, 'auth/login.html')
