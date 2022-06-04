@@ -19,6 +19,9 @@ class Image(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     def __str__(self):
         return self.name
+    class Meta:
+        ordering = ['-date_posted']
+        
 class Comment(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     image = models.ForeignKey(Image, on_delete=models.CASCADE)

@@ -37,7 +37,13 @@
                         </div>                        
                     </div>
                 </div>
-
+                <div>
+                    see
+                    {%for image in images%}
+                    <li class="list-group-item" ><img src="{{image.image.url}}" alt="" style="width: 100%;"></li>
+                        <img src="{{ posts.image.url}}" alt="">
+                    {%endfor%}
+                </div>
                 {% endif %}
             </div>
         </div>

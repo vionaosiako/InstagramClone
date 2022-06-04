@@ -43,7 +43,7 @@ def index(request):
 def profilePage(request,user_id):
     # if request.user == current_user:
         # profile=Profile.objects.all()
-        images = Image.objects.all()
+        # images = Image.objects.filter(request.user)
         profile=Profile.objects.get(id=user_id)
         contex = {'profile':profile}
         return render(request, 'profile.html', contex)
