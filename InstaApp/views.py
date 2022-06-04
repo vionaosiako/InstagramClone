@@ -31,8 +31,8 @@ def loginPage(request):
 
 def logoutUser(request):
 	logout(request)
-	return redirect('login')
+	return redirect('loginPage')
 
-@login_required(login_url='login')
+@login_required(login_url='loginPage')
 def index(request):
     return render(request, 'index.html')
