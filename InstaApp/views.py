@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import  CreateUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Profile
+from .models import Profile,Image
 # Create your views here.
 def registerPage(request):
     form =  CreateUserForm()
@@ -35,14 +35,15 @@ def logoutUser(request):
 
 @login_required(login_url='loginPage')
 def index(request):
-    return render(request, 'index.html')
+    images = Image.objects.all()
+    contex={'images':images}
+    return render(request, 'index.html',contex)
 
 @login_required(login_url='loginPage')
 def profilePage(request,user_id):
     # if request.user == current_user:
         # profile=Profile.objects.all()
+        images = Image.objects.all()
         profile=Profile.objects.get(id=user_id)
         contex = {'profile':profile}
         return render(request, 'profile.html', contex)
-    # else:
-    #     return render(request, 'auth/login.html')
