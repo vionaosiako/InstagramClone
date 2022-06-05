@@ -10,7 +10,7 @@
         {%for image in images%}
         <div class="card mt-3" style="width: 40rem;">
             <ul class="list-group list-group-flush">
-                <li class="list-group-item"><img class="card-img-top thumbnail" src="{{ user.profile.profile_pic.url}}" alt="Card image cap" style="border-radius: 50%; width: 5%; height: 5vh;">{{user.profile.username}}</li>
+                <li class="list-group-item"><img class="card-img-top thumbnail" src="{{ image.user.profile_pic.url}}" alt="Card image cap" style="border-radius: 50%; width: 5%; height: 5vh;">{{image.user.user.username}}</li>
                 <li class="list-group-item"></li>
                 <li class="list-group-item" ><img src="{{image.image.url}}" alt="" style="width: 100%;"></li>
                 <li class="list-group-item" style="display: flex; justify-content: space-between;">
