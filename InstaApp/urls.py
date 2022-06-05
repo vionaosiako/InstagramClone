@@ -11,5 +11,6 @@ urlpatterns = [
     path('profilePage/<int:user_id>', views.profilePage, name='profilePage'),
     path('addNewPost', views.addNewPost, name='addNewPost'),
     path('profileUpdates', views.profileUpdates, name='profileUpdates'),
+    path('addNewPost', views.addNewPost, name='addNewPost'),
     
 ]

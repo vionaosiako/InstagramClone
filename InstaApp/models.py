@@ -18,6 +18,10 @@ class Image(models.Model):
     user = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='images', null=True)
     def __str__(self):
         return self.name
+    def save_image(self):
+        self.save()
+    def delete_image(self):
+        self.delete()
     class Meta:
         ordering = ['-date_posted']
         

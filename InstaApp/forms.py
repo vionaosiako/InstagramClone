@@ -3,6 +3,7 @@ from .models import Profile,Image
 from django.forms import ModelForm,widgets
 from django import forms
 from django.contrib.auth.models import User
+from django.core.files.images import get_image_dimensions
 
 class CreateUserForm(UserCreationForm):
     class Meta:
@@ -12,11 +13,21 @@ class CreateUserForm(UserCreationForm):
 class ProfileForm(ModelForm):
 	class Meta:
 		model = Profile
-		fields = '__all__'
-		# widgets={'name':forms.TextInput(attrs{class:'form-control'})}
+		exclude = ['user']
+		widgets = {
+            'fullname': forms.TextInput(attrs={'class':'form-control'}),
+            'bio': forms.Textarea(attrs={'class':'form-control'}),
+        }
 
 
 class ImageForm(ModelForm):
 	class Meta:
 		model = Image
-		fields = '__all__'
+		fields = ('image', 'name', 'caption')
+		# exclude = ['user']
+		# fields = '__all__'
+		widgets = {
+            'name': forms.TextInput(attrs={'class':'form-control'}),
+            'caption': forms.Textarea(attrs={'class':'form-control'}),
+        }
+		

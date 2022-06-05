@@ -7,6 +7,7 @@ from django.contrib import messages
 from .models import Profile,Image
 from .forms import ProfileForm,ImageForm
 from django.contrib.auth.models import User
+from django.http import HttpResponseRedirect
 # Create your views here.
 def registerPage(request):
     form =  CreateUserForm()
@@ -53,44 +54,42 @@ def profilePage(request,user_id):
     
 @login_required(login_url='loginPage')
 def profileUpdates(request):
-
-	form = ProfileForm()
-
-	if request.method == 'POST':
-		form = ProfileForm(request.POST)
-		if form.is_valid():
-			form.save()
-			
-	context = {'form':form}
-	return render(request, 'addProfile.html', context)
+    current_user=request.user
+    profile = Profile.objects.filter(id=current_user.id).first()
+    if request.method == 'POST':
+        profileform = ProfileForm(request.POST,request.FILES,instance=profile)
+        if  profileform.is_valid:
+            profileform.save(commit=False)
+            profileform.user=request.user
+            profileform.save()
+            return redirect('index')
+    else:
+        form=ProfileForm(instance=profile)
+    return render(request,'addProfile.html',{'form':form})
 
 @login_required(login_url='loginPage')
 def addNewPost(request):
-
-	form = ImageForm()
-
-	if request.method == 'POST':
-		form = ImageForm(request.POST)
-		if form.is_valid():
-			form.save()
-			
-	context = {'form':form}
-	return render(request, 'addNewImage.html', context)
-# def like(request, image_id):
-#     image = Image.objects.get(id=image_id)
-#     like = Likes.objects.filter(image = image ,user = request.user).count()
-#     if like is None:
-#         like = Likes()
-#         like.image = image
-#         like.user = request.user
-#         like.save()
-#     else:
-#         like.delete()
-#     return redirect('index')
-# def like(request, image_id)
-#     user = request.user
-#     image = Image.objects.get(id=image_id)
-#     liked = Liked.objects.filter(user=user, image=image).count()
+    current_user = request.user
+    user = Profile.objects.get(user=request.user)
+    if request.method == "POST":
+        form = ImageForm(request.POST, request.FILES)
+        if form.is_valid():
+            data = form.save(commit=False)
+            data.profile = user
+            data.user = current_user
+            data.save()
+            return redirect('index')
+        else:
+            form=ImageForm()
     
-#     if not liked:
-#         like = Likes.objects.create(user=user,image=image)
+    return render(request, 'addNewImage.html', {'form':ImageForm,})
+    # if request.method=='POST':
+    #     form=ImageForm(request.POST,request.FILES)
+    #     if form.is_valid():
+    #         image=form.save(commit=False)
+    #         image.user=request.user.profile
+    #         image.save()
+    #         return HttpResponseRedirect(request.path_info)
+    # else:
+    #     form=ImageForm()
+    # return render(request,'addNewImage.html',{'form':form})
