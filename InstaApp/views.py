@@ -44,9 +44,6 @@ def index(request):
 
 @login_required(login_url='loginPage')
 def profilePage(request,user_id):
-    # if request.user == current_user:
-        # profile=Profile.objects.all()
-        # images = Image.objects.filter(request.user)
         profile=Profile.objects.get(id=user_id)
         images = request.user.profile.images.all()
         contex = {'profile':profile, 'images':images}
@@ -69,14 +66,13 @@ def profileUpdates(request):
 
 @login_required(login_url='loginPage')
 def addNewPost(request):
-    current_user = request.user
     user = Profile.objects.get(user=request.user)
     if request.method == "POST":
         form = ImageForm(request.POST, request.FILES)
         if form.is_valid():
             data = form.save(commit=False)
             data.profile = user
-            data.user = current_user
+            data.user=request.user.profile
             data.save()
             return redirect('index')
         else:
@@ -93,3 +89,15 @@ def addNewPost(request):
     # else:
     #     form=ImageForm()
     # return render(request,'addNewImage.html',{'form':form})
+    
+    def search_results(request):    
+        if "users" in request.GET and request.GET["users"]:
+            search_term = request.GET.get("users")
+            searched_accounts = Post.search_user(search_term)
+            message = f"{search_term}"
+
+            return render(request, 'search.html',{"message":message,"users": searched_accounts})
+
+        else:
+            message = "You haven't searched for any user"
+            return render(request, 'search.html',{"message":message})
