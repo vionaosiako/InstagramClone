@@ -1,5 +1,5 @@
 from django.contrib.auth.forms import UserCreationForm
-from .models import Profile,Image
+from .models import Profile,Image,Comment
 from django.forms import ModelForm,widgets
 from django import forms
 from django.contrib.auth.models import User
@@ -31,3 +31,11 @@ class ImageForm(ModelForm):
             'caption': forms.Textarea(attrs={'class':'form-control'}),
         }
 		
+class CommentForm(ModelForm):
+    class Meta:
+        model=Comment
+        fields =('comments',)
+        widgets = {
+            'comments': forms.TextInput(attrs={'class':'form-control'}),
+        }
+        

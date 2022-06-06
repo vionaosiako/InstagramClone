@@ -1,13 +1,14 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from django.contrib.auth.forms import UserCreationForm
 from django.contrib.auth import authenticate,login,logout
 from .forms import  CreateUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from .models import Profile,Image
-from .forms import ProfileForm,ImageForm
+from .forms import ProfileForm,ImageForm,CommentForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
+
 # Create your views here.
 def registerPage(request):
     form =  CreateUserForm()
@@ -39,8 +40,26 @@ def logoutUser(request):
 @login_required(login_url='loginPage')
 def index(request):
     images = Image.objects.all()
+        
     contex={'images':images}
     return render(request, 'index.html',contex)
+
+# @login_required(login_url='loginPage')
+# def index(request,id):
+#     images = Image.objects.all()
+#     image = get_object_or_404(Image,pk=id)
+#     form=CommentForm(request.POST)
+#     if request.method=='POST':        
+#         if form.is_valid():
+#             comment = form.save(commit=False)
+#             comment.image = image
+#             comment.user=request.user.profile
+#             comment.save()
+#             return HttpResponseRedirect(request.path_info)
+    
+#     contex={'images':images,'form':form}
+#     return render(request, 'index.html',contex)
+
 
 @login_required(login_url='loginPage')
 def profilePage(request,user_id):
