@@ -16,7 +16,7 @@
                 <li class="list-group-item" ><img src="{{image.image.url}}" alt="" style="width: 100%;"></li>
                 <li class="list-group-item" style="display: flex; justify-content: space-between;">
                     <div>
-                        <span><img src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-63-128.png" alt="" style="viewBox="0 0 24 24"; width="30";"></span>
+                        <span><a href="image/{{image.id}}/like"><img src="https://cdn3.iconfinder.com/data/icons/streamline-icon-set-free-pack/48/Streamline-63-128.png" alt="" style="viewBox="0 0 24 24"; width="30";"></a></span>
                         <span><img src="https://cdn4.iconfinder.com/data/icons/logos-and-brands-2/459/123_Facebook_Messenger_logo_logos-128.png" alt="" style="viewBox="0 0 24 24"; width="30";"></span>
                         <span><img src="https://cdn1.iconfinder.com/data/icons/social-media-2293/32/telegram-128.png" alt="" style="viewBox="0 0 24 24"; width="30";"></span>
                     </div>
@@ -24,7 +24,7 @@
                         <span><img src="https://cdn0.iconfinder.com/data/icons/social-media-logo-4/32/Social_Media_instagram_save_save_instagram-128.png" alt="" style="viewBox="0 0 24 24"; width="30";</span>
                     </div>
                 </li>
-                <li class="list-group-item">Likes</li>
+                <li class="list-group-item"><p>{{image.like_count.count}} <b>Likes</b></p></li>
                 <li class="list-group-item">{{image.caption}}</li>
             </ul>
         </div>           

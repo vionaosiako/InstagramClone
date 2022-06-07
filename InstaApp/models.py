@@ -40,6 +40,9 @@ class Image(models.Model):
         self.save()
     def delete_image(self):
         self.delete()
+    def update_caption(self, new_caption):
+        self.caption = new_caption
+        self.save()
     class Meta:
         ordering = ['-date_posted']
         

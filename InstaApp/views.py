@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate,login,logout
 from .forms import  CreateUserForm
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Profile,Image
+from .models import Profile,Image,Likes
 from .forms import ProfileForm,ImageForm,CommentForm
 from django.contrib.auth.models import User
 from django.http import HttpResponseRedirect
@@ -43,23 +43,6 @@ def index(request):
         
     contex={'images':images}
     return render(request, 'index.html',contex)
-
-# @login_required(login_url='loginPage')
-# def index(request,id):
-#     images = Image.objects.all()
-#     image = get_object_or_404(Image,pk=id)
-#     form=CommentForm(request.POST)
-#     if request.method=='POST':        
-#         if form.is_valid():
-#             comment = form.save(commit=False)
-#             comment.image = image
-#             comment.user=request.user.profile
-#             comment.save()
-#             return HttpResponseRedirect(request.path_info)
-    
-#     contex={'images':images,'form':form}
-#     return render(request, 'index.html',contex)
-
 
 @login_required(login_url='loginPage')
 def profilePage(request,user_id):
@@ -120,3 +103,15 @@ def search_results(request):
     else:
         message = "You haven't searched for any user"
         return render(request, 'search.html',{"message":message})
+    
+def like_image(request, image_id):
+    image = get_object_or_404(Image,id = image_id)
+    like = Likes.objects.filter(image = image ,user = request.user.profile).first()
+    if like is None:
+        like = Likes()
+        like.image = image
+        like.user = request.user.profile
+        like.save()
+    else:
+        like.delete()
+    return redirect('index')

@@ -13,5 +13,6 @@ urlpatterns = [
     path('profileUpdates', views.profileUpdates, name='profileUpdates'),
     path('addNewPost', views.addNewPost, name='addNewPost'),
     path('search_results', views.search_results, name='search_results'),
+    path('image/<image_id>/like',views.like_image,name='likeimage'),
     
 ]
