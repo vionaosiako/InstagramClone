@@ -11,7 +11,12 @@ class Profile(models.Model):
     bio=models.TextField()
     user=models.OneToOneField(User,on_delete=models.CASCADE,null=True)
     def __str__(self):
-        return self.fullname
+        return self.user
+    
+    @classmethod
+    def search_profile(cls, fullname):
+        return cls.objects.filter(user__username__icontains=fullname).all()
+    
     @receiver(post_save,sender=User)
     def createUserProfile(sender, instance, created, **kwargs):
         if created:
@@ -28,6 +33,7 @@ class Image(models.Model):
     caption = models.TextField()
     date_posted = models.DateTimeField(auto_now_add=True)
     user = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='images', null=True)
+    
     def __str__(self):
         return self.name
     def save_image(self):

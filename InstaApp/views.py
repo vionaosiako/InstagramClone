@@ -109,14 +109,14 @@ def addNewPost(request):
     #     form=ImageForm()
     # return render(request,'addNewImage.html',{'form':form})
     
-    def search_results(request):    
-        if "users" in request.GET and request.GET["users"]:
-            search_term = request.GET.get("users")
-            searched_accounts = Post.search_user(search_term)
-            message = f"{search_term}"
+def search_results(request):    
+    if "searched_user" in request.GET and request.GET["searched_user"]:
+        fullname = request.GET.get("searched_user")
+        results = Profile.search_profile(fullname)      
+        message = f'{fullname}'
 
-            return render(request, 'search.html',{"message":message,"users": searched_accounts})
+        return render(request, 'search.html',{"message":message,"users": results})
 
-        else:
-            message = "You haven't searched for any user"
-            return render(request, 'search.html',{"message":message})
+    else:
+        message = "You haven't searched for any user"
+        return render(request, 'search.html',{"message":message})

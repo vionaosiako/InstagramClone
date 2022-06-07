@@ -8,9 +8,13 @@
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="ms-auto">
                 <div class="search">
-                    <input
+                    <form class="form-inline my-2 my-lg-0" action="{% url 'search_results' %}">
+                        <input class="form-control mr-sm-2" type="search" placeholder="Search by category" name="searched_user">
+                        <!-- <button class="btn bg-info my-2 my-sm-0 glyphicon glyphicon-search" type="submit">Search</button> -->
+                    </form>
+                    <!-- <input
                     style="border: 1px solid #dbdbdb; background-color: #fafafa; height: 30.5px;width: 14.5rem ;border-radius: 3.5px;padding-left: 25px;"
-                        type="text" placeholder="Search">
+                        type="text" placeholder="Search"> -->
                 </div>
             </ul>
             <ul class="navbar-nav ms-auto">
