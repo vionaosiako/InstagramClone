@@ -10,8 +10,8 @@ This is a socila media app which requires a user to register and login to use. A
 
 ### Requirements
 
-Python 3
-Visual Studio Code
+* Python 3
+* Visual Studio Code
 
 ### Getting Files
 
@@ -26,37 +26,34 @@ To install all requirements
 Then run server with the above command
 
 ## Live Link
-
-Or you can access the web application directly via this [LINK.](https://instagram-mod.herokuapp.com/)
+(https://lionessinstaclone.herokuapp.com/)
 
 ## Dependencies
-asgiref==3.5.2
-backports.zoneinfo==0.2.1
-certifi==2022.5.18.1
-cloudinary==1.29.0
-dj-database-url==0.5.0
-Django==4.0.4
-django-heroku==0.3.1
-gunicorn==20.1.0
-Pillow==9.1.1
-psycopg2==2.9.3
-python-decouple==3.6
-six==1.16.0
-sqlparse==0.4.2
-urllib3==1.26.9
-whitenoise==6.1.0
+* asgiref==3.5.2
+* backports.zoneinfo==0.2.1
+* certifi==2022.5.18.1
+* cloudinary==1.29.0
+* dj-database-url==0.5.0
+* Django==4.0.4
+* django-heroku==0.3.1
+* gunicorn==20.1.0
+* Pillow==9.1.1
+* psycopg2==2.9.3
+* python-decouple==3.6
+* six==1.16.0
+* sqlparse==0.4.2
+* urllib3==1.26.9
+* whitenoise==6.1.0
 
 ## Technologies Used
-Python 3
+* Python 3
 Bootstrap
-HTML
+* HTML
 
 ## Contact Information
-Email : viona Anyona Osiako
-Whatsapp : +254703616854
+* Email : viona Anyona Osiako
+* Whatsapp : +254703616854
 
 ## License
 
-MIT License
-
-Copyright (c) 2021 Viona Anyona Osiako
+MIT License Copyright (c) [2022] [Viona Osiako] Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions: The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
